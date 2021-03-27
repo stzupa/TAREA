@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lanza dados</title>
+        <style type="text/css">
+            body{
+                background-color: rgb(233, 233, 233);;
+            } 
+            .intro{
+                font-size: 17px;
+            }         
+        </style>
+        <!--Linkear la hoja de estilos de FancyBox-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <script src="https://stzupa.github.io/cv/js/jquery-3.4.1.js"></script>
+        <!-- link al archivo javascript de fancyBox -->
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('[data-fancybox="imagenes"]').fancybox({
+                  buttons: ["slideShow", "share", "zoom", "fullScreen", "close"],
+                  thumbs: {
+                    //autoStart: true,
+                    overlayColor: "#36C95C",
+                    overlayOpacity: .9,
+                    transitionIn: "elastic",
+                    transitionOut: "elastic",
+                    titlePosition: "Outside",
+                    cyclic: true
+                  }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header><h1>Lanza los dados</h1></header>
+        <div><p class="intro">Juega contra la máquina! Debes implementar un lanzador de dados
+            (número aleatorio del 1 – 6) e implementar un botón “lanzar dado”
+            que te entregue el número que te ha salido, luego comparar
+            con el número del dado que lanzó la máquina para luego mostrar
+            quien logró sacar el número mayor. (Considerar empate).</p>
+        </div>
+        <div>
+            <h3>Vistas</h3>
+            <a href="https://stzupa.github.io/cv/imagenes/d1.PNG" rel="gallery" title="dados 1" data-fancybox="imagenes" data-caption="Vista 1"><img src="https://stzupa.github.io/cv/imagenes/d1.PNG" width="70" height="70" alt="Vista 1"></a>
+            <a href="https://stzupa.github.io/cv/imagenes/d2.PNG" rel="gallery" title="dados 2" data-fancybox="imagenes" data-caption="Vista 2"><img src="https://stzupa.github.io/cv/imagenes/d2.PNG" width="70" height="70" alt="Vista 2"></a>
+            <a href="https://stzupa.github.io/cv/imagenes/d3.PNG" rel="gallery" title="dados 3" data-fancybox="imagenes" data-caption="Vista 3"><img src="https://stzupa.github.io/cv/imagenes/d3.PNG" width="70" height="70" alt="Vista 3"></a>
+            <a href="https://stzupa.github.io/cv/imagenes/d4.PNG" rel="gallery" title="dados 4" data-fancybox="imagenes" data-caption="Vista 3"><img src="https://stzupa.github.io/cv/imagenes/d4.PNG" width="70" height="70" alt="Vista 3"></a>
+        </div>
+        <div id="codigo">
+            <h3>Código</h3><br>
+            <pre>
+                public class ViewDados {
+
+                    public ViewDados(){
+                        inicio();
+                    }                   
+                    public void inicio(){
+                        JFrame marco_dados = new JFrame();
+                        marco_dados.setSize(300, 400);
+                        marco_dados.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        marco_dados.setLocationRelativeTo(null);
+                    
+                        JPanel panel_dados = new JPanel();
+                        marco_dados.add(panel_dados);
+                        posicionar(panel_dados);
+                        marco_dados.setVisible(true);
+                    }                   
+                    public static void posicionar(JPanel panel){
+                        panel.setLayout(null);                    
+                        JLabel text1 = new JLabel();
+                        JLabel text2 = new JLabel();
+                        JLabel text3 = new JLabel();
+                        JLabel text4 = new JLabel();
+                        JLabel text5 = new JLabel();
+                    
+                        text2.setText("TU");
+                        text4.setText("MAQUINA");
+                    
+                        JButton boton_lanzar = new JButton("Lanza los dados !!!");
+                    
+                        boton_lanzar.setBounds(70, 50, 150, 150);
+                        text1.setBounds(100, 220, 130, 20);
+                        text2.setBounds(50, 250, 30, 30);
+                        text3.setBounds(50, 280, 30, 30);
+                        text4.setBounds(200, 250, 60, 30);
+                        text5.setBounds(220, 280, 30, 30);
+                        text1.setFont(new java.awt.Font("Tahoma", 0, 18));
+                    
+                        boton_lanzar.addActionListener(new ActionListener(){
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                text1.setText("");
+                                text2.setText("");
+                                text3.setText("");
+                                text4.setText("");
+                                text5.setText("");
+                                Random lanzar_jugador = new Random();
+                                int n = ControllerDados.lanzar_dados();
+                                Random lanzar_maquina = new Random();
+                                int x = ControllerDados.lanzar_dados();;
+                            
+                                if(n==x){
+                                    text1.setText("Empataron !!!!");
+                                    String cad=String.valueOf(n);
+                                    text3.setText(cad);
+                                    text2.setText("TU");
+                                    text4.setText("MAQUINA");
+                                    String cad1=String.valueOf(x);
+                                    text5.setText(cad1);
+                                }else if(n < x){
+                                    text1.setText("LOSER !!!!");
+                                    text2.setText("TU");
+                                    text4.setText("MAQUINA");
+                                    String cad=String.valueOf(n);
+                                    text3.setText(cad);
+                                    String cad1=String.valueOf(x);
+                                    text5.setText(cad1);                            
+                                }else{                        
+                                    text1.setText("IDOLOOOOO !!!!");
+                                    text2.setText("TU");
+                                    text4.setText("MAQUINA");
+                                    String cad=String.valueOf(n);
+                                    text3.setText(cad);
+                                    String cad1=String.valueOf(x);
+                                    text5.setText(cad1);
+                                }
+                            }
+                        });
+                        panel.add(text5);
+                        panel.add(text4);
+                        panel.add(text3);
+                        panel.add(text2);
+                        panel.add(text1);
+                        panel.add(boton_lanzar);
+                    }
+                }
+            </pre>
+        </div>
+    </body>
+</html>
