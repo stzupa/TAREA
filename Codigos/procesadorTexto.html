@@ -22,6 +22,27 @@
         }
     
     </style>
+    <!--Linkear la hoja de estilos de FancyBox-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://stzupa.github.io/cv/js/jquery-3.4.1.js"></script>
+    <!-- link al archivo javascript de fancyBox -->
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('[data-fancybox="imagenes"]').fancybox({
+              buttons: ["slideShow", "share", "zoom", "fullScreen", "close"],
+              thumbs: {
+                //autoStart: true,
+                overlayColor: "#36C95C",
+                overlayOpacity: .9,
+                transitionIn: "elastic",
+                transitionOut: "elastic",
+                titlePosition: "Outside",
+                cyclic: true
+              }
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -55,9 +76,12 @@
     <br>
     <h3>Vista ventana de la aplicación</h3>
     <br>
-    <div class="cuadroImagen">
-        <img src="https://stzupa.github.io/cv/imagenes/ptexto.PNG">
-    </div><br><br><br>
+    <div>
+        <h3>Vistas</h3>
+        <a href="https://stzupa.github.io/cv/imagenes/pt1.PNG" rel="gallery" title="p1" data-fancybox="imagenes" data-caption="Vista 1"><img src="https://stzupa.github.io/cv/imagenes/pt1.PNG" width="70" height="70" alt="Vista 1"></a>
+        <a href="https://stzupa.github.io/cv/imagenes/pt2.PNG" rel="gallery" title="p2" data-fancybox="imagenes" data-caption="Vista 2"><img src="https://stzupa.github.io/cv/imagenes/pt2.PNG" width="70" height="70" alt="Vista 2"></a>
+        <a href="https://stzupa.github.io/cv/imagenes/pt3.PNG" rel="gallery" title="p3" data-fancybox="imagenes" data-caption="Vista 3"><img src="https://stzupa.github.io/cv/imagenes/pt3.PNG" width="70" height="70" alt="Vista 3"></a>
+    </div>
     <h3>Código del precesador</h3>  
     <br><br>
     <div>
