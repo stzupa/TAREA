@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lotería</title>
+        <style type="text/css">
+            body{
+                background-color: rgb(233, 233, 233);;
+            } 
+            .intro{
+                font-size: 17px;
+            }         
+        </style>
+        <!--Linkear la hoja de estilos de FancyBox-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <script src="https://stzupa.github.io/cv/js/jquery-3.4.1.js"></script>
+        <!-- link al archivo javascript de fancyBox -->
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('[data-fancybox="imagenes"]').fancybox({
+                  buttons: ["slideShow", "share", "zoom", "fullScreen", "close"],
+                  thumbs: {
+                    //autoStart: true,
+                    overlayColor: "#36C95C",
+                    overlayOpacity: .9,
+                    transitionIn: "elastic",
+                    transitionOut: "elastic",
+                    titlePosition: "Outside",
+                    cyclic: true
+                  }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header><h1>Lotería</h1></header>
+        <div>
+            <p class="intro">Este es de los primeros ejercicios con Swing, hay bastante código repetido como puede ser normal cuando comenzamos a programar. 
+                Se trata de implementar un videojuego tipo “lotería” en el que se puedan ingresar 6 números, el programa debe generar 6 números 
+                de forma aleatoria (1 – 40) y compararlos con los números ingresados, luego de presionar el botón “evaluar” el programa 
+                debe indicar los aciertos.
+            </p>
+        </div>
+
+        <div>
+            <pre>
+                public class ViewLoteria {
+                    public String cadena, nombre_boton, guarda_random, yy;
+                    public int contad = 0, p, num=0, caso, y = 5;
+                    ArrayList<String> seleccion = new ArrayList<String>();
+                    ArrayList<String> random_juego = new ArrayList<String>();
+                    ArrayList<Integer> random_int = new ArrayList<Integer>();
+                    Random opciones = new Random();
+                   
+                    public ViewLoteria(){
+                        inicio();
+                    }
+                    public void inicio(){
+                        JFrame marco_loteria = new JFrame("Loteria x 6");
+                        marco_loteria.setSize(510, 600);
+                        marco_loteria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        marco_loteria.setLocationRelativeTo(null);
+                        JPanel panel_loteria = new JPanel();
+                        marco_loteria.add(panel_loteria);
+                        posicionar_elementos(panel_loteria);
+                        marco_loteria.setVisible(true);
+                    }
+                   
+                    private void posicionar_elementos(JPanel panel){
+                        panel.setLayout(null); //limpiar basura
+                        JLabel texto1 = new JLabel("Bienvenid@ a LOTERIA en linea");
+                        texto1.setFont(new java.awt.Font("Courier", 0, 18));
+                        JLabel texto2 = new JLabel("Para comenzar selecciona 6 numeros: ");
+                        JLabel texto3 = new JLabel();
+                        JLabel texto4 = new JLabel();
+                        JLabel texto5 = new JLabel();
+                        JLabel texto6 = new JLabel();
+                        JLabel texto7 = new JLabel();
+                        JLabel texto8 = new JLabel();
+                        JLabel texto9 = new JLabel();
+                        JLabel texto10 = new JLabel();
+                        JLabel texto11 = new JLabel();
+                        JLabel texto12= new JLabel();
+                        JLabel texto13 = new JLabel();
+                        JLabel texto14 = new JLabel();
+                        JLabel texto15 = new JLabel();
+                        JLabel texto16 = new JLabel();
+                        JLabel texto17 = new JLabel("6 números");
+                        JLabel texto18 = new JLabel("Faltan");
+                        JLabel texto19 = new JLabel();
+                        JLabel texto20 = new JLabel();
+                   
+                        texto1.setBounds(10, 40, 400, 20);
+                        texto2.setBounds(10, 80, 300, 20); // posiciona etiquetas de texto
+                        texto3.setBounds(10, 500, 15, 10);
+                        texto4.setBounds(30, 500, 15, 10);
+                        texto5.setBounds(50, 500, 15, 10);
+                        texto6.setBounds(70, 500, 15, 10);
+                        texto7.setBounds(90, 500, 15, 10);
+                        texto8.setBounds(110, 500, 15, 10);
+                        texto9.setBounds(20, 470, 100, 15);
+                        texto10.setBounds(320, 500, 15, 10);
+                        texto11.setBounds(340, 500, 15, 10);
+                        texto12.setBounds(360, 500, 15, 10);
+                        texto13.setBounds(380, 500, 15, 10);
+                        texto14.setBounds(400, 500, 15, 10);
+                        texto15.setBounds(420, 500, 15, 10);
+                        texto16.setBounds(320, 470, 120, 15);
+                        texto17.setBounds(30, 440, 80, 10);
+                        texto18.setBounds(30, 420, 50, 15);
+                        texto19.setBounds(200, 520, 60, 20);
+                        texto20.setBounds(220, 490, 20,20);
+                    
+                    
+                        JButton try_again = new JButton("Otra Vez");
+                        try_again.setBounds(350, 430, 90, 30);
+                        try_again.setEnabled(false);
+                   
+                        JButton boton_jugar = new JButton("Jugar");
+                        boton_jugar.setBounds(200, 430, 90, 30);
+                        boton_jugar.setEnabled(false);
+                   
+                   
+                        int nb, posx=10, posy=110; // posiciona botones
+                        int i, j, cont = 1;
+                   
+                        for(i=0;i<5;i++){
+                            for(j=0;j<8;j++){
+                                JButton nombre_boton = new JButton(Integer.toString(cont));
+                                nombre_boton.setBounds(posx, posy, 50, 50);
+                                posx+=60;
+                                if(posx>440){
+                                    posx=10;
+                                    posy+=60;
+                                }
+                                panel.add(nombre_boton); // posiciona el boton
+                                cont++;
+                    
+                                nombre_boton.addActionListener(new ActionListener(){
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                    if (contad <6){
+                                    seleccion.add(nombre_boton.getText());
+                                    contad++;
+                                    nombre_boton.setEnabled(false);
+                                    yy=Integer.toString(y);
+                                    String intentos=yy;
+                                    texto17.setText(intentos+" números");
+                                    y--;
+                                    if(contad == 6){
+                                        boton_jugar.setEnabled(true);
+                                    }
+                                    } 
+                                }
+                    
+                            });
+                        }
+                        for ( int z = 0; z <= 6; z++){
+                            caso=opciones.nextInt(40)+1;
+                            guarda_random=Integer.toString(caso);
+                            random_juego.add(guarda_random);
+                            if(z>0){
+                                int aux=z-1;
+                        
+                                if(random_juego.get(aux) == guarda_random){
+                                    random_juego.remove(aux);
+                                    z = aux;
+                                    JOptionPane.showMessageDialog(null, random_juego.get(aux)+" "+guarda_random);
+                                }
+                            }
+                        }
+                    }
+                   
+                    boton_jugar.addActionListener(new ActionListener(){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                    
+                            for(int i=0; i<6; i++){
+                                caso=opciones.nextInt(40)+1;
+                                random_int.add(caso);
+                                random_int.sort(null);
+                        
+                            }                    
+                            for(int y=0; y<random_int.size();y++){
+                                System.out.println(random_int.get(y));
+                            }
+                        
+                        
+                            for(int z=0; z<random_juego.size();z++){
+                                System.out.println(random_juego.get(z));
+                                if(z>0){
+                                    //System.out.println(random_juego.get(z));
+                                    if(random_juego.get(z)==random_juego.get(z-1)){
+                                        random_juego.remove(z-1);
+                                        z=z-1;
+                                        System.out.println(random_juego.get(z));
+                                    }
+                                }
+                            }
+                        
+                            texto3.setText(seleccion.get(0));
+                            texto4.setText(seleccion.get(1));
+                            texto5.setText(seleccion.get(2));
+                            texto6.setText(seleccion.get(3));
+                            texto7.setText(seleccion.get(4));
+                            texto8.setText(seleccion.get(5));
+                            texto9.setText("Tu apuesta");
+                            texto10.setText(random_juego.get(0));
+                            texto11.setText(random_juego.get(1));
+                            texto12.setText(random_juego.get(2));
+                            texto13.setText(random_juego.get(3));
+                            texto14.setText(random_juego.get(4));
+                            texto15.setText(random_juego.get(5));
+                            texto16.setText("Numeros sorteados");
+                            texto19.setText("Aciertos");
+                            texto20.setText("0");
+                            texto20.setFont(new java.awt.Font("Tahoma", 0, 24));
+                            try_again.setEnabled(true);
+                            int x=0, y=0;
+                            for( int i = 1; i <= seleccion.size(); i++){
+                                for(String aciertos: seleccion){
+                                    if(y<6){
+                                        if(seleccion.contains(random_juego.get(y))){
+                                            System.out.println("ok");
+                                            x++;
+                                            String plop = Integer.toString(x);
+                                            texto20.setText(plop);
+                                        }
+                                        y++;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                   
+                    panel.add(texto3);
+                    panel.add(texto4);
+                    panel.add(texto5);
+                    panel.add(texto6);
+                    panel.add(texto7);
+                    panel.add(texto8);
+                    panel.add(texto9);
+                    panel.add(texto10);
+                    panel.add(texto11);
+                    panel.add(texto12);
+                    panel.add(texto13);
+                    panel.add(texto14);
+                    panel.add(texto15);
+                    panel.add(texto16);
+                    panel.add(texto17);
+                    panel.add(texto18);
+                    panel.add(texto19);
+                    panel.add(texto20);
+                    panel.add(boton_jugar);
+                    panel.add(texto1);
+                    panel.add(texto2);
+                   
+                }
+            </pre>
+        </div>
+
+    </body>
+</html>
