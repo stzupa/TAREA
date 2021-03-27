@@ -19,6 +19,42 @@
           font-family:Verdana, Geneva, Tahoma, sans-serif;
           font-size: 17px;
         }
+        .text {
+          font-size:18px;
+          font-family:helvetica;
+          font-weight:bold;
+          color:#00521f;
+        }
+        .parpadea {
+          
+          animation-name: parpadeo;
+          animation-duration: 1s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+
+          -webkit-animation-name:parpadeo;
+          -webkit-animation-duration: 1s;
+          -webkit-animation-timing-function: linear;
+          -webkit-animation-iteration-count: infinite;
+        }
+
+        @-moz-keyframes parpadeo{  
+          0% { opacity: 1.0; }
+          50% { opacity: 0.0; }
+          100% { opacity: 1.0; }
+        }
+
+        @-webkit-keyframes parpadeo {  
+          0% { opacity: 1.0; }
+          50% { opacity: 0.0; }
+          100% { opacity: 1.0; }
+        }
+
+        @keyframes parpadeo {  
+          0% { opacity: 1.0; }
+          50% { opacity: 0.0; }
+          100% { opacity: 1.0; }
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -49,8 +85,8 @@
       <a href="https://stzupa.github.io/cv/Codigos/dados.html">Dados</a>
     </p>
     </div>
-    <div style="text-align: start; margin-top: 30px; font-style: italic;"><p class="codigos">Códigos</p></div>
-    
+    <!--div style="text-align: start; margin-top: 30px; font-style: italic;"><p class="codigos">Códigos</p></div-->
+    <div style="margin-top: 28px;"><span class="parpadea text"><strong>Mira algunos códigos</strong></div>
 	</div>
   <div class="jumbotron text-center">
     <h2>Sergio Terán Zamora</h2>
