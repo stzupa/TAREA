@@ -3,31 +3,79 @@
 <head>
     <meta charset="utf-8">
     <title>Código procesador de texto</title>
+    <style type="text/css">
+        .cuadroImagen{
+            margin-left: 2%;
+        }
+        .intro{
+            font-size: 17px;
+        }
+        .codigo{
+            font-style: italic;
+        }
+        .lista{
+            color: blue;
+            font-style: oblique;
+        }
+    
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Procesador de texto basado en Swing</h1>
+    </header>
     <div>
-        <img src="https://stzupa.github.io/cv/imagenes/ptexto.PNG">
+        <p class="intro">
+            Este procesador de texto cuenta con barra de menú y barra de herramientas cuyo objetivo es realizar las acciones requeridas,
+            como por ejemplo estilo, tamaño, color y alineación. JFrame y JPanel para la construcción de la ventana, acceso a recursos de sistema con
+            Toolkit, para poblar los item de menu y la barra de herramientas utilizo arrays de distintos tipos. En tiempo de ejecución 
+            son insertados los elementos a las barras junto con agregar los eventos ActionListener
+        </p>
+        <p class="intro">
+            Las clases e interfaces utilizadas;
+        </p>
+        <ul class="lista">
+            <li>JFrame</li>
+            <li>JPanel</li>
+            <li>Toolkit</li>
+            <li>Color</li>
+            <li>ImageIcon</li>
+            <li>JMenu</li>
+            <li>JToolBar</li>
+            <li>JTextPane</li>
+            <li>BorderLayout</li>
+            <li>JScrollPane</li>
+            <li>ActionListener</li>
+            <li>StyledEditorKit</li>
+        </ul>
     </div>
+    <br>
+    <h3>Ventana de la aplicación</h3>
+    <br>
+    <div class="cuadroImagen">
+        <img src="https://stzupa.github.io/cv/imagenes/ptexto.PNG">
+    </div><br><br><br>
+    <h3>Código del precesador</h3>  
+    <br><br>
     <div>
-        <blockquote>
-        <pre>
-            public class EjercicioSwingFinal {
+        <pre class="codigo">
+            public class ProcesadorTexto {
                 public static void main(String[] args) {
-                    MarcoSwingFinal marco = new MarcoSwingFinal();
+                    MarcoProcesador marco = new MarcoProcesador();
                     marco.setVisible(true);
                 }
             }
-            class MarcoSwingFinal extends JFrame{
-                public MarcoSwingFinal() {
+            class MarcoProcesador extends JFrame{
+                public MarcoProcesador() {
                     setSize(600, 500);
                     setLocationRelativeTo(null);
                     setTitle("Procesador de texto");
                     setIconImage(Toolkit.getDefaultToolkit().getImage("MiIcono.png"));
                     setDefaultCloseOperation(EXIT_ON_CLOSE);
-                    add(new PanelSwingFinal());		
+                    add(new PanelProcesador());		
                 }
             }
-            class PanelSwingFinal extends JPanel{
+            class PanelProcesador extends JPanel{
                 
                 private String[] fuentes = {"Arial","Courier","Verdana","Comic Sans MS","Serif","Microsoft Sans Serif"};
                 private String[] estilos = {"Negrita","Cursiva","Subrayado"};
@@ -45,7 +93,7 @@
                 private JTextPane areaTexto;
                 private JToolBar barraH;
                 
-                public PanelSwingFinal() {
+                public PanelProcesador() {
                     setLayout(new BorderLayout());
                     JMenuBar barra = new JMenuBar();
                     barraH = new JToolBar(SwingConstants.VERTICAL);
@@ -103,7 +151,6 @@
                 }
             }
         </pre>
-        </blockquote>
     </div>
 </body>
 </html>
