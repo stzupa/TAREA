@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Canvas y pelotas</title>
+	<style type="text/css">
+		body{
+			background: #000000;
+		}
+		section{
+			width: 1100px;
+			position: relative;
+			margin: auto;
+		}
+		#lienzo{
+			border: 1px solid blue;
+			background: #116C0D;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		window.addEventListener("load", inicio, false);
+		var y = 0;
+		var x = 0;
+		var posX = 10;
+		var posY = 10;
+		var arriba = true;
+		var abajo = true;
+		var izquierda = true;
+		var derecha = true;
+		var primero = true;
+
+		function inicio(){
+
+			var elemento = document.getElementById("lienzo");			
+
+			lienzo = elemento.getContext("2d");
+
+			setInterval(animacion, 10);
+			
+		}
+
+		function animacion(){
+			if(primero){
+				cicloUno();
+			}else if(arriba == true && abajo == false && izquierda == false && derecha == true){
+				subiendoDerecha();
+			}else if(arriba == true && abajo == false && izquierda == true && derecha == false){
+				subiendoIzquierda();
+			}else if(arriba == false && abajo == true && izquierda == true && derecha == false){
+				bajandoIzquierda();
+			}else if(arriba == false && abajo == true && izquierda == false && derecha == true){
+				bajandoDerecha();
+			}
+
+			function cicloUno(){
+
+				lienzo.clearRect(0,0,1100,600);
+				lienzo.beginPath();
+				lienzo.fillStyle = "#AAAAFF";
+				lienzo.shadowColor = "rgba(0,0,0,0.5)";
+				lienzo.shadowOffsetX = 10;
+				lienzo.shadowOffsetY = 10;
+				lienzo.shadowBlur = 8;
+				lienzo.arc(posX+x,posY+y,40,0,Math.PI*2, false);
+				lienzo.fill();
+				y+=2;
+				x+=3;
+				if(y>550){
+
+					arriba = true;
+					abajo = false;
+					izquierda = false;
+					derecha = true;
+					primero = false;
+					posX = posX+x;
+					posY = posY+y;
+					y=0;
+					x=0;					
+				}				
+			}
+
+			function subiendoDerecha(){
+
+				lienzo.clearRect(0,0,1100,600);
+				lienzo.beginPath();
+				lienzo.fillStyle = "#DD1111";
+
+				lienzo.arc(posX+x,posY-y,40,0,Math.PI*2, false);
+				lienzo.fill();
+				y+=2;
+				x+=3;
+				if((posX + x)>=1060){
+
+					posX = posX + x;
+					posY = posY - y;
+					x = 0;
+					y = 0;
+					arriba = true;
+					abajo = false;
+					izquierda = true;
+					derecha = false;
+
+				}else if((posY - y) < 40 ){
+
+					posX = posX + x;
+					posY = posY - y;
+					x = 0;
+					y = 0;
+					arriba = false;
+					abajo = true;
+					izquierda = false;
+					derecha = true;
+				}
+			}
+
+			function subiendoIzquierda(){
+
+				lienzo.clearRect(0,0,1100,600);
+				lienzo.beginPath();
+				lienzo.fillStyle = "#97E1F9";
+				lienzo.arc(posX-x,posY-y,40,0,Math.PI*2, false);
+				lienzo.fill();
+				y+=2;
+				x+=3;				
+
+				if((posY - y) <= 40){
+
+					posX = posX - x;
+					posY = posY - y;
+					x = 0;
+					y = 0;
+					arriba = false;
+					abajo = true;
+					izquierda = true;
+					derecha = false;
+
+				}else if((posX - x ) <= 40){
+
+					posX = posX - x;
+					posY = posY - y;
+					x = 0;
+					y = 0;
+					arriba = true;
+					abajo = false;
+					izquierda = false;
+					derecha = true;
+
+				}
+			}
+
+			function bajandoIzquierda(){
+
+				lienzo.clearRect(0,0,1100,600);
+				lienzo.beginPath();
+				lienzo.fillStyle = "#6F61F3";
+				lienzo.arc(posX-x,posY+y,40,0,Math.PI*2, false);
+				lienzo.fill();
+				y+=2;
+				x+=3;				
+				
+				if((posX - x) <= 40){
+
+					posX = posX - x;
+					posY = posY + y;
+					x = 0;
+					y = 0;
+					arriba = false;
+					abajo = true;
+					izquierda = false;
+					derecha = true;
+					
+				}else if((posY + y) >= 560){
+
+					posX = posX - x;
+					posY = posY + y;
+					x = 0;
+					y = 0;
+					arriba = true;
+					abajo = false;
+					izquierda = true;
+					derecha = false;	
+
+				}				
+
+			}
+
+			function bajandoDerecha(){
+
+				lienzo.clearRect(0,0,1100,600);
+				lienzo.beginPath();
+				lienzo.fillStyle = "#FFD800";
+				lienzo.arc(posX+x,posY+y,40,0,Math.PI*2, false);
+				lienzo.fill();
+				y+=2;
+				x+=3;				
+				
+				if((posY + y) > 560){
+
+					posX = posX + x;
+					posY = posY + y;
+					x = 0;
+					y = 0;
+					arriba = true;
+					abajo = false;
+					izquierda = false;
+					derecha = true;
+
+				}else if((posX + x) >= 1060){
+
+					posX = posX + x;
+					posY = posY + y;
+					x = 0;
+					y = 0;
+					arriba = false;
+					abajo = true;
+					izquierda = true;
+					derecha = false;
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<section>
+		<canvas id="lienzo" width="1100px" height="600px">Navegador no soporta CANVAS</canvas>
+	</section>
+</body>
+</html>
