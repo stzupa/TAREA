@@ -1,0 +1,57 @@
+.principal{
+    width: 40%;
+    margin-left: 20%;
+}
+#titulo{
+    font-size: 2em;
+    width: 100%;
+}
+#subtitle{
+    padding: 20px 0px 20px 15px;
+    font-style: italic;
+    width: 100%;
+}
+.botonera{
+    width: 12.5%;
+}
+.boton{
+    transition-duration: 0.4s;
+    padding: 20px 20px 20px 20px; 
+    font-size: 100%;
+    font-weight: bold;
+    width: 100%;
+    height: 55px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(146, 215, 255);
+    border-radius: 12px;             
+      
+}
+.boton:hover{
+    background-color: #b80303;
+    color: white;
+}
+.selected{
+    background-color: red;
+    color: yellow;
+}
+.noSelected{
+    color: rgb(0, 0, 0);
+    background-color: rgb(146, 215, 255);
+}
+.acciones{
+    transition-duration: 0.4s;
+    background-color: rgb(253, 255, 134);
+    border-radius: 12px;
+    width: 40%;
+    height: 40px;
+}
+.acciones:hover{
+    background-color: rgb(215, 247, 178);
+    color: black;
+}
+.resultados{
+    text-align: center;
+}
+.aciertos{
+    color: red;
+}
