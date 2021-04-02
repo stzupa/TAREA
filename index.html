@@ -3,78 +3,13 @@
     <meta http-equiv="Content-type" content="text/html;charset-UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stzupa.github.io/cv/css/estilos.css">
     <title>Mi CV</title>
-    <style type="text/css">
-        #menu{
-          width: 100%;
-          height: 100px;
-          background-color: rgb(234, 235, 222);
-          opacity: 0.85;
-          padding:20px 20px 20px 20px;
-          position: absolute;
-          top: -60px;
-        }
-        .codigos{
-          color: rgb(255, 0, 0);
-        } 
-        .linkCodigos{
-          font-family:Verdana, Geneva, Tahoma, sans-serif;
-          font-size: 17px;
-        }
-        .text {
-          font-size:18px;
-          font-family:helvetica;
-          font-weight:bold;
-          color:#ff0000;
-        }
-        .parpadea {
-          
-          animation-name: parpadeo;
-          animation-duration: 1s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-
-          -webkit-animation-name:parpadeo;
-          -webkit-animation-duration: 1s;
-          -webkit-animation-timing-function: linear;
-          -webkit-animation-iteration-count: infinite;
-        }
-
-        @-moz-keyframes parpadeo{  
-          0% { opacity: 1.0; }
-          50% { opacity: 0.0; }
-          100% { opacity: 1.0; }
-        }
-
-        @-webkit-keyframes parpadeo {  
-          0% { opacity: 1.0; }
-          50% { opacity: 0.0; }
-          100% { opacity: 1.0; }
-        }
-
-        @keyframes parpadeo {  
-          0% { opacity: 1.0; }
-          50% { opacity: 0.0; }
-          100% { opacity: 1.0; }
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://stzupa.github.io/cv/js/jquery-3.4.1.js"></script>
     <script src="https://stzupa.github.io/cv/js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $("#menu").hover(function(){
-          $(this).stop().animate({
-            top:"0px"
-          },450,"easeInSine");
-        },function(){
-          $(this).stop().animate({
-            top:"-60px"
-          },900,"easeOutBounce");
-        });
-      });
-    </script>
+    <script src="https://stzupa.github.io/cv/js/index.js"></script>
 </head>
 <body>
   <div id="menu">
