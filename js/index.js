@@ -1,11 +1,11 @@
 $(document).ready(function(){
     $("#menu").hover(function(){
       $(this).stop().animate({
-        top:"0px"
+        left:"0px"
       },450,"easeInSine");
     },function(){
       $(this).stop().animate({
-        top:"-60px"
+        left:"-128px"
       },900,"easeOutBounce");
     });
 });
